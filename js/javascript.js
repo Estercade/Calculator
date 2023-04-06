@@ -34,52 +34,88 @@ let num1, num2, operator;
 const display = document.getElementById('display');
 
 // const buttonsList = document.querySelectorAll('button');
-// buttonsList.forEach((button) => button.addEventListener('click', logButton));
+// buttonsList.forEach((button) => button.
+document.addEventListener('click', logButton);
 
-var currentValue = 0;
+function logButton() {
+    console.log(`num1 = ${num1}`)
+    console.log(`operator = ${operator}`)
+    console.log(`num2 = ${num2}`)
+    console.log(`currentValue = ${currentValue}`)
+}
+
+var currentValue = undefined;
 
 const equalBtn = document.getElementById('equal');
 equalBtn.addEventListener('click', (e) => {
-    num2 = currentValue;
-    currentValue = operate(operator, num1, num2);
-    updateDisplay();
-    num1 = undefined;
-    num2 = undefined;
-    operator = undefined;
+    if (operator === '/' && currentValue === '0') {
+        alert('Cannot divide by zero.')
+    }
+    else if (num1 != undefined && operator != undefined && currentValue != undefined) {
+        num2 = currentValue;
+        currentValue = operate(operator, num1, num2);
+        updateTopDisplayEquals();
+        updateBotDisplay();
+        num1 = undefined;
+        num2 = undefined;
+        operator = undefined;
+    } else {
+        return;
+    }
 });
 
 const operatorBtnList = document.querySelectorAll('.operatorBtn');
 operatorBtnList.forEach((operatorBtn) => operatorBtn.addEventListener('click', (e) => {
-    operator = e.target.innerHTML;
-    if (num1 === undefined) {
-        num1 = currentValue;
-        currentValue = 0;
-        updateDisplay();
-    } else if (num1 != undefined && operator != undefined) {
+    if (num1 != undefined && operator != undefined && currentValue != undefined) {
         num2 = currentValue;
         currentValue = operate(operator, num1, num2);
         num1 = currentValue;
-        currentValue = 0;
-        updateDisplay();
         num2 = undefined;
-        operator = undefined;
-}}));
+        operator = e.target.innerHTML;
+        updateTopDisplay();
+        updateBotDisplay();
+        currentValue = undefined;
+    } else if (num1 === undefined && operator === undefined && currentValue !== undefined) {
+        operator = e.target.innerHTML;
+        num1 = currentValue;
+        updateTopDisplay();
+        updateBotDisplay();
+        currentValue = undefined;
+    } else if (num1 != undefined && operator != undefined && currentValue === undefined) {
+        operator = e.target.innerHTML;
+        updateTopDisplay();
+        updateBotDisplay();
+        return;
+    } else if (num1 === undefined && operator === undefined && currentValue === undefined) {
+        num1 = 0;
+        operator = e.target.innerHTML;
+        updateTopDisplay();
+        updateBotDisplay();
+    }
+}));
 
 const numberBtnList = document.querySelectorAll('.numberBtn');
 numberBtnList.forEach((numberBtn) => numberBtn.addEventListener('click', (e) => {
+    if (e.target.innerHTML === '0' && currentValue === '0') {
+        return;
+    }
     currentValue === undefined || currentValue === 0 ? currentValue = e.target.innerHTML : currentValue += e.target.innerHTML;
-    updateDisplay();
+    updateTopDisplay();
+    updateBotDisplay();
 }));
 
-// Update display with every button press
-// buttonsList.forEach((button) => button.addEventListener('click', updateDisplay));
-
 // Initial display content
-bottomDisplay.textContent = '123456789';
+topDisplay.textContent = '';
+bottomDisplay.textContent = '0';
 
-function updateDisplay() {
-    topDisplay.textContent = `${num1} ${operator} ${num2}`
-    bottomDisplay.textContent = `${currentValue}`;
+function updateTopDisplay() {
+    topDisplay.textContent = `${num1} ${operator} ${num2}`.replaceAll('undefined', '');
+}
+function updateTopDisplayEquals() {
+    topDisplay.textContent = `${num1} ${operator} ${num2} = `.replaceAll('undefined', '');
+}
+function updateBotDisplay() {
+    bottomDisplay.textContent = `${currentValue}`.replaceAll('undefined', '');
 }
 
 const clearButton = document.getElementById('clearBtn');
@@ -90,5 +126,7 @@ function clear() {
     num2 = undefined;
     currentValue = 0;
     operator = undefined;
-    updateDisplay();
+    updateTopDisplay();
+    updateBotDisplay();
+    currentValue = undefined;
 }
