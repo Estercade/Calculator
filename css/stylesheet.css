@@ -1,0 +1,86 @@
+html, body {
+    font-family: Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.calculatorContainer {
+    padding: 20px;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 350px;
+    min-height: 525px;
+}
+
+#displayContainer {
+    padding: 20px 20px;
+    background-color: #e0e0e0;
+    border: 2px solid black;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    width: 306px;
+    min-height: 75px; 
+    display: flex;
+    flex-direction: column;
+}
+
+#topDisplay {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    min-height: 30px;
+    width: 305px;
+    font-size: 20px;
+    text-align: right;
+    word-wrap: break-word;
+}
+
+#bottomDisplay {
+    margin-top: 0px;
+    margin-bottom:  0px;
+    min-height: 45px;
+    width: 305px;
+    font-size: 40px;
+    text-align: right;
+    word-wrap: break-word;
+}
+
+.buttonsContainer {
+    margin-bottom: -20px;
+}
+
+div [class^=row] {
+    display: flex;
+    justify-content: space-between;
+    flex: 1 1 0;
+}
+
+.row1, .row2, .row3, .row4 {
+    margin-bottom: 10px;
+}
+
+.row5 {
+    margin-bottom: 20px;
+}
+
+button {
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: #e0e0e0;
+    height: 70px;
+    width: 80px;
+    font-size: 20px;
+}
+
+.operatorBtn, .equalBtn {
+    background-color: gold;
+}
+
+#clearBtn, #backspaceBtn {
+    background-color: #f11717;
+}
