@@ -43,7 +43,7 @@ function equalFunction() {
     }
     else if (num1 != undefined && operator != undefined && currentValue != undefined) {
         num2 = currentValue;
-        currentValue = operate(operator, num1, num2);
+        currentValue = operate(operator, num1, num2).toString();
         updateTopDisplayEquals();
         updateBotDisplay();
         num1 = undefined;
