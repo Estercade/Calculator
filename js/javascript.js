@@ -14,19 +14,19 @@ function operate(operator, num1, num2) {
 }
 
 function add(num1, num2) {
-    return Math.round((Number(num1) + Number(num2)) * 100000) / 100000;
+    return Math.round((Number(num1) + Number(num2)) * 1000000000000) / 1000000000000;
 }
 
 function subtract(num1, num2) {
-    return Math.round((Number(num1) - Number(num2)) * 100000) / 100000;
+    return Math.round((Number(num1) - Number(num2)) * 1000000000000) / 1000000000000;
 }
 
 function multiply(num1, num2) {
-    return Math.round((Number(num1) * Number(num2)) * 100000) / 100000;
+    return Math.round((Number(num1) * Number(num2)) * 1000000000000) / 1000000000000;
 }
 
 function divide(num1, num2) {
-    return Math.round((Number(num1) / Number(num2)) * 100000) / 100000;
+    return Math.round((Number(num1) / Number(num2)) * 1000000000000) / 1000000000000;
 }
 
 let num1, num2, operator;
@@ -45,7 +45,7 @@ function equalFunction() {
         num2 = currentValue;
         currentValue = operate(operator, num1, num2).toString();
         updateTopDisplayEquals();
-        updateBotDisplay();
+        updateBottomDisplay();
         num1 = undefined;
         num2 = undefined;
         operator = undefined;
@@ -64,24 +64,23 @@ function operatorFunction(e) {
         num2 = undefined;
         operator = e.target.innerHTML;
         updateTopDisplay();
-        updateBotDisplay();
+        updateBottomDisplay();
         currentValue = undefined;
     } else if (num1 === undefined && operator === undefined && currentValue !== undefined) {
         operator = e.target.innerHTML;
         num1 = currentValue;
         updateTopDisplay();
-        updateBotDisplay();
+        updateBottomDisplay();
         currentValue = undefined;
     } else if (num1 != undefined && operator != undefined && currentValue === undefined) {
         operator = e.target.innerHTML;
         updateTopDisplay();
-        updateBotDisplay();
         return;
     } else if (num1 === undefined && operator === undefined && currentValue === undefined) {
         num1 = 0;
         operator = e.target.innerHTML;
         updateTopDisplay();
-        updateBotDisplay();
+        updateBottomDisplay();
     }
 };
 
@@ -92,7 +91,7 @@ function numberFunction(e) {
         return;
     }
     currentValue === undefined || currentValue === 0 ? currentValue = e.target.innerHTML : currentValue += e.target.innerHTML;
-    updateBotDisplay();
+    updateBottomDisplay();
 };
 
 const decimalBtn = document.getElementById('decimal');
@@ -100,12 +99,12 @@ decimalBtn.addEventListener('click', decimalFunction);
 function decimalFunction() {
     if (currentValue === undefined) {
         currentValue = '0.';
-        updateBotDisplay();
-    } else if (toString(currentValue).includes('.')) {
+        updateBottomDisplay();
+    } else if (currentValue.toString().includes('.')) {
         return;
     } else {
         currentValue += '.';
-        updateBotDisplay();
+        updateBottomDisplay();
 }};
 
 // Initial display content
@@ -118,7 +117,7 @@ function updateTopDisplay() {
 function updateTopDisplayEquals() {
     topDisplay.textContent = `${num1} ${operator} ${num2} = `.replaceAll('undefined', '');
 }
-function updateBotDisplay() {
+function updateBottomDisplay() {
     bottomDisplay.textContent = `${currentValue}`.replaceAll('undefined', '');
 }
 
@@ -131,7 +130,7 @@ function clear() {
     currentValue = 0;
     operator = undefined;
     updateTopDisplay();
-    updateBotDisplay();
+    updateBottomDisplay();
     currentValue = undefined;
 }
 
@@ -139,12 +138,12 @@ const backspaceBtn = document.getElementById('backspaceBtn');
 backspaceBtn.addEventListener('click', backspace);
 
 function backspace() {
-    if (currentValue.length === 1 || currentValue === undefined || currentValue === 0) {
-        currentValue = 0;
+    if (currentValue === undefined || currentValue.length === 1 || currentValue === 0) {
+        currentValue = undefined;
     } else {
         currentValue = currentValue.slice(0, -1);
     }
-    updateBotDisplay();
+    updateBottomDisplay();
 }
 
 const keyInputListener = document.addEventListener('keydown', keyInput);
