@@ -14,19 +14,19 @@ function operate(operator, num1, num2) {
 }
 
 function add(num1, num2) {
-    return (Number(num1) + Number(num2));
+    return Math.round((Number(num1) + Number(num2)) * 100000) / 100000;
 }
 
 function subtract(num1, num2) {
-    return (Number(num1) - Number(num2));
+    return Math.round((Number(num1) - Number(num2)) * 100000) / 100000;
 }
 
 function multiply(num1, num2) {
-    return (Number(num1) * Number(num2));
+    return Math.round((Number(num1) * Number(num2)) * 100000) / 100000;
 }
 
 function divide(num1, num2) {
-    return (Number(num1) / Number(num2));
+    return Math.round((Number(num1) / Number(num2)) * 100000) / 100000;
 }
 
 let num1, num2, operator;
@@ -100,9 +100,21 @@ numberBtnList.forEach((numberBtn) => numberBtn.addEventListener('click', (e) => 
         return;
     }
     currentValue === undefined || currentValue === 0 ? currentValue = e.target.innerHTML : currentValue += e.target.innerHTML;
-    updateTopDisplay();
     updateBotDisplay();
 }));
+
+const decimalBtn = document.getElementById('decimal');
+decimalBtn.addEventListener('click', () => {
+    if (currentValue === undefined) {
+        currentValue = '0.';
+        updateBotDisplay();
+    } else if (toString(currentValue).includes('.')) {
+        return;
+    } else {
+        currentValue += '.';
+        updateBotDisplay();
+    }
+});
 
 // Initial display content
 topDisplay.textContent = '';
