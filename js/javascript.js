@@ -139,16 +139,22 @@ const backspaceBtn = document.getElementById('backspaceBtn');
 backspaceBtn.addEventListener('click', backspace);
 
 function backspace() {
-    if (toString(currentValue).length = 1 || currentValue === undefined) {
+    if (currentValue.length === 1 || currentValue === undefined || currentValue === 0) {
         currentValue = 0;
     } else {
-        currentValue = toString(currentValue).slice(0, -1);
+        currentValue = currentValue.slice(0, -1);
     }
     updateBotDisplay();
 }
 
 const keyInputListener = document.addEventListener('keydown', keyInput);
 
+// Array of valid key inputs
+const validInputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '/', '=', 'Escape'];
+
 function keyInput(e) {
+    if(!validInputs.includes(e.key)) {
+        return;
+    }
     console.log(e);
 }
