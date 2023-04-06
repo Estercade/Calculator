@@ -130,8 +130,8 @@ function updateBotDisplay() {
     bottomDisplay.textContent = `${currentValue}`.replaceAll('undefined', '');
 }
 
-const clearButton = document.getElementById('clearBtn');
-clearButton.addEventListener('click', clear);
+const clearBtn = document.getElementById('clearBtn');
+clearBtn.addEventListener('click', clear);
 
 function clear() {
     num1 = undefined;
@@ -141,4 +141,12 @@ function clear() {
     updateTopDisplay();
     updateBotDisplay();
     currentValue = undefined;
+}
+
+const backspaceBtn = document.getElementById('backspaceBtn');
+backspaceBtn.addEventListener('click', backspace);
+
+function backspace() {
+    currentValue = currentValue.slice(0, -1);
+    updateBotDisplay();
 }
