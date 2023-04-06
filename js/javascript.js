@@ -33,21 +33,11 @@ let num1, num2, operator;
 
 const display = document.getElementById('display');
 
-// const buttonsList = document.querySelectorAll('button');
-// buttonsList.forEach((button) => button.
-document.addEventListener('click', logButton);
-
-function logButton() {
-    console.log(`num1 = ${num1}`)
-    console.log(`operator = ${operator}`)
-    console.log(`num2 = ${num2}`)
-    console.log(`currentValue = ${currentValue}`)
-}
-
 var currentValue = undefined;
 
 const equalBtn = document.getElementById('equal');
-equalBtn.addEventListener('click', (e) => {
+equalBtn.addEventListener('click', equalFunction);
+function equalFunction() {
     if (operator === '/' && currentValue === '0') {
         alert('Cannot divide by zero.')
     }
@@ -62,10 +52,11 @@ equalBtn.addEventListener('click', (e) => {
     } else {
         return;
     }
-});
+};
 
 const operatorBtnList = document.querySelectorAll('.operatorBtn');
-operatorBtnList.forEach((operatorBtn) => operatorBtn.addEventListener('click', (e) => {
+operatorBtnList.forEach((operatorBtn) => operatorBtn.addEventListener('click', operatorFunction));
+function operatorFunction(e) {
     if (num1 != undefined && operator != undefined && currentValue != undefined) {
         num2 = currentValue;
         currentValue = operate(operator, num1, num2);
@@ -92,19 +83,21 @@ operatorBtnList.forEach((operatorBtn) => operatorBtn.addEventListener('click', (
         updateTopDisplay();
         updateBotDisplay();
     }
-}));
+};
 
 const numberBtnList = document.querySelectorAll('.numberBtn');
-numberBtnList.forEach((numberBtn) => numberBtn.addEventListener('click', (e) => {
+numberBtnList.forEach((numberBtn) => numberBtn.addEventListener('click', numberFunction));
+function numberFunction(e) {
     if (e.target.innerHTML === '0' && currentValue === '0') {
         return;
     }
     currentValue === undefined || currentValue === 0 ? currentValue = e.target.innerHTML : currentValue += e.target.innerHTML;
     updateBotDisplay();
-}));
+};
 
 const decimalBtn = document.getElementById('decimal');
-decimalBtn.addEventListener('click', () => {
+decimalBtn.addEventListener('click', decimalFunction);
+function decimalFunction() {
     if (currentValue === undefined) {
         currentValue = '0.';
         updateBotDisplay();
@@ -113,8 +106,7 @@ decimalBtn.addEventListener('click', () => {
     } else {
         currentValue += '.';
         updateBotDisplay();
-    }
-});
+}};
 
 // Initial display content
 topDisplay.textContent = '';
@@ -147,6 +139,16 @@ const backspaceBtn = document.getElementById('backspaceBtn');
 backspaceBtn.addEventListener('click', backspace);
 
 function backspace() {
-    currentValue = currentValue.slice(0, -1);
+    if (toString(currentValue).length = 1 || currentValue === undefined) {
+        currentValue = 0;
+    } else {
+        currentValue = toString(currentValue).slice(0, -1);
+    }
     updateBotDisplay();
+}
+
+const keyInputListener = document.addEventListener('keydown', keyInput);
+
+function keyInput(e) {
+    console.log(e);
 }
