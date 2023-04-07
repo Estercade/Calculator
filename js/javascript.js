@@ -33,7 +33,7 @@ let num1, num2, operator;
 
 const display = document.getElementById('display');
 
-var currentValue = undefined;
+let currentValue = undefined;
 
 const equalBtn = document.getElementById('equal');
 equalBtn.addEventListener('click', equalFunction);
@@ -43,7 +43,7 @@ function equalFunction() {
     }
     else if (num1 != undefined && operator != undefined && currentValue != undefined) {
         num2 = currentValue;
-        currentValue = operate(operator, num1, num2).toString();
+        currentValue = (operate(operator, num1, num2)).toString();
         updateTopDisplayEquals();
         updateBottomDisplay();
         num1 = undefined;
@@ -62,23 +62,23 @@ function operatorFunction(e) {
         currentValue = operate(operator, num1, num2);
         num1 = currentValue;
         num2 = undefined;
-        operator = e.target.innerHTML;
+        operator = e.target.value;
         updateTopDisplay();
         updateBottomDisplay();
         currentValue = undefined;
     } else if (num1 === undefined && operator === undefined && currentValue !== undefined) {
-        operator = e.target.innerHTML;
+        operator = e.target.value;
         num1 = currentValue;
         updateTopDisplay();
         updateBottomDisplay();
         currentValue = undefined;
     } else if (num1 != undefined && operator != undefined && currentValue === undefined) {
-        operator = e.target.innerHTML;
+        operator = e.target.value;
         updateTopDisplay();
         return;
     } else if (num1 === undefined && operator === undefined && currentValue === undefined) {
         num1 = 0;
-        operator = e.target.innerHTML;
+        operator = e.target.value;
         updateTopDisplay();
         updateBottomDisplay();
     }
@@ -87,10 +87,10 @@ function operatorFunction(e) {
 const numberBtnList = document.querySelectorAll('.numberBtn');
 numberBtnList.forEach((numberBtn) => numberBtn.addEventListener('click', numberFunction));
 function numberFunction(e) {
-    if (e.target.innerHTML === '0' && currentValue === '0') {
+    if (e.target.value === '0' && currentValue === '0') {
         return;
     }
-    currentValue === undefined || currentValue === 0 ? currentValue = e.target.innerHTML : currentValue += e.target.innerHTML;
+    currentValue === undefined || currentValue === 0 ? currentValue = e.target.value : currentValue += e.target.value;
     updateBottomDisplay();
 };
 
@@ -112,10 +112,10 @@ topDisplay.textContent = '';
 bottomDisplay.textContent = '0';
 
 function updateTopDisplay() {
-    topDisplay.textContent = `${num1} ${operator} ${num2}`.replaceAll('undefined', '');
+    topDisplay.textContent = `${num1} ${operator} ${num2}`.replaceAll('undefined', '').replace('*', '×').replace('/', '÷');;
 }
 function updateTopDisplayEquals() {
-    topDisplay.textContent = `${num1} ${operator} ${num2} = `.replaceAll('undefined', '');
+    topDisplay.textContent = `${num1} ${operator} ${num2} = `.replaceAll('undefined', '').replace('*', '×').replace('/', '÷');
 }
 function updateBottomDisplay() {
     bottomDisplay.textContent = `${currentValue}`.replaceAll('undefined', '');
