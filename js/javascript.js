@@ -152,8 +152,71 @@ const keyInputListener = document.addEventListener('keydown', keyInput);
 const validInputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '/', '=', 'Escape'];
 
 function keyInput(e) {
-    if(!validInputs.includes(e.key)) {
+    console.log(e.key)
+    if (!validInputs.includes(e.key)) {
         return;
+    } else if (e.key === 'Backspace' || e.key === 'Enter') {
+        e.preventDefault();
     }
-    console.log(e);
+    switch (e.key) {
+        case '1':
+            document.getElementById('one').click();
+            break;
+        case '2':
+            document.getElementById('two').click();
+            break;
+        case '3':
+            document.getElementById('three').click();
+            break;     
+        case '4':
+            document.getElementById('four').click();
+            break;
+        case '5':
+            document.getElementById('five').click();
+            break;
+        case '6':
+            document.getElementById('six').click();
+            break; 
+        case '7':
+            document.getElementById('seven').click();
+            break; 
+        case '8':
+            document.getElementById('eight').click();
+            break; 
+        case '9':
+            document.getElementById('nine').click();
+            break; 
+        case '0':
+            document.getElementById('zero').click();
+            break; 
+        case '+':
+            document.getElementById('add').click();
+            break;
+        case '-':
+            document.getElementById('subtract').click();
+            break;
+        case '*':
+            document.getElementById('multiply').click();
+            break;     
+        case '/':
+            document.getElementById('divide').click();
+            break;
+        case '=':
+            document.getElementById('equal').click();
+            break;
+        case 'Enter':
+            console.log(e.key);
+            e.preventDefault();
+            document.getElementById('equal').click();
+            break;
+        case 'Backspace':
+            console.log(e.key);
+            e.preventDefault();
+            document.getElementById('backspaceBtn').click();
+            break; 
+        case 'Escape':
+            document.getElementById('clearBtn').click();
+            break; 
+
+    }
 }
