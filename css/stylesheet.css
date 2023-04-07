@@ -75,6 +75,7 @@ button {
     height: 70px;
     width: 80px;
     font-size: 20px;
+    transition: all 0.1s;
 }
 
 #backspaceBtn, #equal {
@@ -87,4 +88,13 @@ button {
 
 #clearBtn, #backspaceBtn {
     background-color: #f11717;
+}
+
+.hover {
+    filter: brightness(0.8);
+}
+
+.pressed {
+    filter: brightness(0.4);
+    box-shadow: 0 0 10px white;
 }

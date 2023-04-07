@@ -213,6 +213,33 @@ function keyInput(e) {
             e.preventDefault();
             document.getElementById('clearBtn').click();
             break; 
-
     }
+}
+
+const btnList = document.querySelectorAll('button');
+btnList.forEach((button) => button.addEventListener('click', addTransition));
+btnList.forEach((button) => button.addEventListener('transitionend', removeTransition));
+btnList.forEach((button) => button.addEventListener('mouseover', addHover));
+btnList.forEach((button) => button.addEventListener('mouseout', removeHover));
+
+function addTransition(e) {
+    e.target.classList.remove('pressed');
+    setTimeout(function() {
+        e.target.classList.add('pressed');
+    })
+}
+
+function removeTransition(e) {
+    if (e.propertyName != 'filter') {
+        return;
+    }
+    e.target.classList.remove('pressed');
+}
+
+function addHover(e) {
+    e.target.classList.add('hover');
+}
+
+function removeHover(e) {
+    e.target.classList.remove('hover');
 }
