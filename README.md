@@ -8,8 +8,8 @@ The goal of this project is to create a functioning calculator capable of perfor
 
 ### Features
 
-- Addition, subtraction, multiplication, and division on pairs of numbers are supported.
-- Backspace and clear are supported.
+- Addition, subtraction, multiplication, and division of pairs of numbers are supported.
+- Backspace and clear buttons are supported.
 - Keyboard input is supported for numbers, operators, backspace, and clear (escape).
 
 ## Built using
