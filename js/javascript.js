@@ -149,14 +149,11 @@ function backspace() {
 const keyInputListener = document.addEventListener('keydown', keyInput);
 
 // Array of valid key inputs
-const validInputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '/', '=', 'Escape'];
+const validInputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '/', '=', 'Enter', 'Backspace', 'Escape'];
 
 function keyInput(e) {
-    console.log(e.key)
     if (!validInputs.includes(e.key)) {
         return;
-    } else if (e.key === 'Backspace' || e.key === 'Enter') {
-        e.preventDefault();
     }
     switch (e.key) {
         case '1':
@@ -205,16 +202,15 @@ function keyInput(e) {
             document.getElementById('equal').click();
             break;
         case 'Enter':
-            console.log(e.key);
             e.preventDefault();
             document.getElementById('equal').click();
             break;
         case 'Backspace':
-            console.log(e.key);
             e.preventDefault();
             document.getElementById('backspaceBtn').click();
             break; 
         case 'Escape':
+            e.preventDefault();
             document.getElementById('clearBtn').click();
             break; 
 
