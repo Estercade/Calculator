@@ -4,13 +4,15 @@ This project was made following the instructions and specifications for The Odin
 
 ## Description
 
-The goal of this project is to create a functioning calculator capable of performing the basic mathematical operations using a combination of HTML5, CSS3, and JS ES6. All functionality will be implemented using Vanilla JS.
+The goal of this project is to create a functioning calculator capable of performing the basic mathematical operations using a combination of HTML5, CSS3, and JS ES6. All functionality will be implemented using Vanilla JS. This program is optimized for use with Google Chrome.
 
 ### Features
 
 - Addition, subtraction, multiplication, and division on pairs of numbers are supported.
 - Backspace and clear are supported.
 - Keyboard input is supported for numbers, operators, backspace, and clear (escape).
+
+## Built using
 
 ### Technologies
 
@@ -23,14 +25,10 @@ The goal of this project is to create a functioning calculator capable of perfor
 - Visual Studio Code
 - Git and GitHub
 
-### Dependencies
-
-This program is optimized for use with Google Chrome.
-
-## Authors
+## Author
 
 Wilson Lee
-https://github.com/Estercade?tab=repositories
+- [Github](https://github.com/estercade)
 
 ## Acknowledgments
 
